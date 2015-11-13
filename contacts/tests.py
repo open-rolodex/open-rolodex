@@ -10,11 +10,18 @@ class PersonTestCase(TestCase):
 
     def test_person_all_fields(self):
         jane = Person.objects.get(first_name="Jane")
-        self.assertIsNotNone(jane.first_name)
-        self.assertIsNotNone(jane.last_name)
-        self.assertIsNotNone(jane.middle_name)
+        self.assertIsNot(jane.first_name, u'')
+        self.assertIsNot(jane.last_name, u'')
+        self.assertIsNot(jane.middle_name, u'')
 
     def test_person_first_name_only(self):
-        mark = Person.obects.get(first_name="Mark")
-        self.assertIsNone(mark.last_name)
-        self.assertIsNone(mark.middle_name)
+        mark = Person.objects.get(first_name="Mark")
+        self.assertIsNot(mark.first_name, u'')
+        self.assertIs(mark.last_name, u'')
+        self.assertIs(mark.middle_name, u'')
+
+    def test_person_no_last_name(self):
+        john = Person.objects.get(first_name="John")
+        self.assertIs(john.middle_name, u'')
+        self.assertIsNot(john.first_name, u'')
+        self.assertIsNot(john.last_name, u'')
