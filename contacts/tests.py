@@ -11,7 +11,7 @@ class PersonTestCase(TestCase):
     def test_person_all_fields(self):
         jane = Person.objects.get(first_name="Jane")
         self.assertIsNot(jane.first_name, u'')
-        self.assertIs(jane.last_name, u'sasdsad')
+        self.assertIsNot(jane.last_name, u'')
         self.assertIsNot(jane.middle_name, u'')
 
     def test_person_first_name_only(self):
