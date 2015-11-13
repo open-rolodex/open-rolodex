@@ -10,18 +10,18 @@ class PersonTestCase(TestCase):
 
     def test_person_all_fields(self):
         jane = Person.objects.get(first_name="Jane")
-        self.assertIsNot(jane.first_name, u'')
-        self.assertIs(jane.last_name, u'Doe')
-        self.assertIsNot(jane.middle_name, u'')
+        self.assertNotEqual(jane.first_name, u'')
+        self.assertEqual(jane.last_name, u'Doe')
+        self.assertNotEqual(jane.middle_name, u'')
 
     def test_person_first_name_only(self):
         mark = Person.objects.get(first_name="Mark")
-        self.assertIsNot(mark.first_name, u'')
-        self.assertIs(mark.last_name, u'')
-        self.assertIs(mark.middle_name, u'')
+        self.assertNotEqual(mark.first_name, u'')
+        self.assertEqual(mark.last_name, u'')
+        self.assertEqual(mark.middle_name, u'')
 
     def test_person_no_last_name(self):
         john = Person.objects.get(first_name="John")
-        self.assertIs(john.middle_name, u'')
-        self.assertIsNot(john.first_name, u'')
-        self.assertIsNot(john.last_name, u'')
+        self.assertEqual(john.middle_name, u'')
+        self.assertEqual(john.first_name, u'John')
+        self.assertEqual(john.last_name, u'Doe')
