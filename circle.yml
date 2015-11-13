@@ -1,0 +1,11 @@
+
+
+machine:
+  timezone:
+    America/Los_Angeles
+
+database:
+  override:
+    - django-admin makemigrations
+    - django-admin migrate
+    - django-admin syncdb
